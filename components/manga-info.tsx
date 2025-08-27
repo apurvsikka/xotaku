@@ -217,7 +217,7 @@ export default function MangaPage() {
             <div className="flex gap-3 mt-2">
               <Link href={`/manga/${id}/1`}>
                 <Button variant="outline" className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4" /> Add to List
+                  <Sparkles className="h-4 w-4" /> Read First
                 </Button>
               </Link>
             </div>
