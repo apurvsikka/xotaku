@@ -202,8 +202,10 @@ export default function MangaSearchPage({
   }
 
   return (
-    <div className="p-6 mt-16">
-      <h1 className="text-2xl font-bold mb-4">Results for {searchParams.query}</h1>
+    <div className="p-6 ">
+      <h1 className="text-2xl font-bold mb-4">
+        Results for {searchParams.query}
+      </h1>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {data.results.map((manga) => (
           <MangaCard key={manga.id} manga={manga} />

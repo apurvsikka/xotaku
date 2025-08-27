@@ -26,7 +26,7 @@ export default function MangaReader({ images }: { images: string[] }) {
   const handlePrev = () => handleJump(currentPage - 1)
 
   return (
-    <div className=" text-white min-h-screen flex flex-col">
+    <div className=" text-white min-h-screen flex flex-col z-50">
       {/* Reader container */}
       <div
         ref={containerRef}

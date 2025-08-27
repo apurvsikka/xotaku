@@ -1,5 +1,3 @@
 export default function Page() {
- return(
-    <h1 className="mt-16">WILL BE AVAILABLE SOON</h1>
- )
+ return <h1 className="">WILL BE AVAILABLE SOON</h1>;
 }

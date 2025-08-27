@@ -30,8 +30,10 @@ export default function GenreFooter() {
 
   return (
     <div className="border-t-1  border-gray-500 my-4 bg-neutral-900 h-full">
-      <center><h1 className="font-black mt-12">GENRES</h1></center>
-      <div className="flex flex-wrap gap-2 p-4 mt-16">
+      <center>
+        <h1 className="font-black mt-12">GENRES</h1>
+      </center>
+      <div className="flex flex-wrap gap-2 p-4 ">
         {genres.map((genre) => (
           <Link key={genre.slug} href={`/manga/genre/${genre.slug}`}>
             <Button

@@ -101,14 +101,12 @@ export default function FloatingSearch({
   return (
     <div
       ref={backdropRef}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 backdrop-blur-sm bg-gradient-to-bl from-gray-900/40 to-black/60 opacity-0"
-    >
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 backdrop-blur-sm bg-gradient-to-bl from-gray-900/40 to-black/60 opacity-0">
       <div
         ref={containerRef}
-        className="w-full max-w-md sm:max-w-lg rounded-2xl bg-neutral-900/40  shadow-lg shadow-black/30 backdrop-blur-xl px-4 py-3 opacity-0 transform-gpu transition-all duration-300 ease-in-out"
-      >
+        className="w-full max-w-md sm:max-w-lg rounded-2xl bg-neutral-900/40  shadow-lg shadow-black/30 backdrop-blur-xl px-4 py-3 opacity-0 transform-gpu transition-all duration-300 ease-in-out">
         <div className="flex items-center gap-3">
-          <Search className="text-gray-300 w-5 h-5 shrink-0" />
+          <Search className="text-gray-300 w-5 h-5 shrink-0 scale-50 md:scale-100" />
 
           <input
             ref={inputRef}
@@ -123,31 +121,29 @@ export default function FloatingSearch({
           <div className="relative flex gap-1 px-1 py-1 rounded-full bg-gray-900/10 overflow-hidden min-w-[72px] h-[3.2vh]">
             <div
               className={`absolute top-0 left-0 h-full w-1/2 rounded-full bg-gray-300 transition-transform duration-300 ease-in-out
-                ${searchType === 'anime' ? 'translate-x-0' : 'translate-x-full'}
+                ${searchType === "anime" ? "translate-x-0" : "translate-x-full"}
               `}
             />
             <button
-              onClick={() => setSearchType('anime')}
+              onClick={() => setSearchType("anime")}
               className={`relative z-10 w-8 h-full flex items-center justify-center rounded-full
                 transition-colors duration-200
-                ${searchType === 'anime' ? 'text-black' : 'text-white/50 hover:bg-white/10'}
-              `}
-            >
+                ${searchType === "anime" ? "text-black" : "text-white/50 hover:bg-white/10"}
+              `}>
               <Play size={10} className="pointer-events-none" />
             </button>
 
             <button
-              onClick={() => setSearchType('manga')}
+              onClick={() => setSearchType("manga")}
               className={`relative z-10 w-8 h-full flex items-center justify-center rounded-full
                 transition-colors duration-200
-                ${searchType === 'manga' ? 'text-black' : 'text-white/50 hover:bg-white/10'}
-              `}
-            >
+                ${searchType === "manga" ? "text-black" : "text-white/50 hover:bg-white/10"}
+              `}>
               <BookOpen size={10} className="pointer-events-none" />
             </button>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -61,7 +61,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <div className="lg:p-6 lg:pt-20 pt-16">
+      <div className="lg:p-6 lg:pt-20 ">
         <MangaSlider />
         {/* <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20"></div> */}
         <PopularManga latestManga={popularManga} />
@@ -69,7 +69,7 @@ export default function Home() {
           <LatestManga items={latestManga} />
         </center>
       </div>
-        <GenreFooter />
+      <GenreFooter />
     </>
   );
 }
