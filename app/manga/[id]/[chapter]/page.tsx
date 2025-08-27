@@ -103,19 +103,19 @@ export default function MangaReaderPage({
 
   if (loading)
     return (
-      <div className="h-screen flex items-center justify-center bg-black text-white">
+      <div className="h-screen flex items-center justify-center bg-background text-foreground">
         Loading...
       </div>
     );
   if (!data)
     return (
-      <div className="h-screen flex items-center justify-center bg-black text-white">
+      <div className="h-screen flex items-center justify-center bg-bakcground text-foreground">
         Failed to load
       </div>
     );
 
   return (
-    <div className="bg-black min-h-screen text-white flex flex-col">
+    <div className="bg-background/60 backdrop-blur-md min-h-screen text-foreground flex flex-col">
       {/* Reader */}
       <div
         className="flex-1 overflow-y-auto"
@@ -138,7 +138,7 @@ export default function MangaReaderPage({
 
       {/* Mobile Toolbar */}
       {toolbarVisible && (
-        <div className="sticky bottom-0 bg-neutral-900/95 backdrop-blur-md border-t border-neutral-700 px-3 py-2 flex flex-col gap-2">
+        <div className="sticky bottom-0 bg-background/95 backdrop-blur-md border-t border-neutral-700/70 px-3 py-2 flex flex-col gap-2">
           {/* Progress */}
           {totalPages > 0 && (
             <div className="flex items-center gap-2">
@@ -148,7 +148,7 @@ export default function MangaReaderPage({
                 max={totalPages}
                 value={currentPage}
                 onChange={(e) => jumpToPage(Number(e.target.value))}
-                className="flex-1 accent-white h-2"
+                className="flex-1 accent-accent h-2"
               />
               <div className="flex items-center gap-1 text-xs">
                 <Hash size={14} className="text-neutral-400" />
@@ -167,7 +167,7 @@ export default function MangaReaderPage({
                 prevChapter && goToChapter(prevChapter.chapterNumber)
               }
               disabled={!prevChapter}
-              className="p-3 bg-neutral-800 rounded-full disabled:opacity-40">
+              className="p-3 bg-neutral-500/50 rounded-full disabled:opacity-40">
               <ChevronLeft size={22} />
             </button>
 
@@ -175,12 +175,12 @@ export default function MangaReaderPage({
             <div className="relative flex-1 mx-3">
               <Book
                 size={16}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-200"
               />
               <select
                 value={currentChapter}
                 onChange={(e) => goToChapter(e.target.value)}
-                className="w-full pl-8 pr-3 py-2 rounded-full bg-neutral-800 text-white text-sm">
+                className="w-full pl-8 pr-3 py-2 rounded-full bg-neutral-500/50 text-white text-sm">
                 {chapters.map((ch) => (
                   <option key={ch.chapterNumber} value={ch.chapterNumber}>
                     {ch.chapterName}
@@ -195,7 +195,7 @@ export default function MangaReaderPage({
                 nextChapter && goToChapter(nextChapter.chapterNumber)
               }
               disabled={!nextChapter}
-              className="p-3 bg-neutral-800 rounded-full disabled:opacity-40">
+              className="p-3 bg-neutral-500/50 rounded-full disabled:opacity-40">
               <ChevronRight size={22} />
             </button>
           </div>

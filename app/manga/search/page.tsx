@@ -47,7 +47,8 @@ const CardWrapper = styled(Link)`
 
 const CardItem = styled.div`
   position: relative;
-  background: #111;
+  background: var(--background);
+  color: var(--foreground) !important;
   border-radius: inherit;
 `;
 
@@ -114,11 +115,9 @@ function MangaCard({ manga }: { manga: MangaResult }) {
 
   if (loading) {
     return (
-      <div className="relative w-full bg-black flex items-center justify-center lg:rounded-lg overflow-hidden">
+      <div className="relative w-full bg-background flex items-center justify-center lg:rounded-lg overflow-hidden">
         <div className="animate-spin w-12 h-12 border-4 border-white/20 border-t-white rounded-full"></div>
-        <span className="ml-4 text-white text-xl font-medium">
-          Loading manga...
-        </span>
+        <span className="ml-4  text-xl font-medium">Loading manga...</span>
       </div>
     );
   }
@@ -127,20 +126,24 @@ function MangaCard({ manga }: { manga: MangaResult }) {
     <HoverCard openDelay={300} closeDelay={100}>
       <HoverCardTrigger asChild>
         <CardWrapper
-          href={`${manga.link.split('/manga/')[1]}`}
+          href={`${manga.link.split("/manga/")[1]}`}
           onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+          onMouseLeave={() => setIsHovered(false)}>
           <CardItem>
             <CardImageWrapper>
               <CardImage>
-                <Image src={manga.image} alt={manga.title} fill />
+                <Image
+                  src={manga.image}
+                  alt={manga.title}
+                  fill
+                  className="rounded-lg hover:blur-sm"
+                />
                 <Badge>MANGA</Badge>
               </CardImage>
             </CardImageWrapper>
 
             <TitleContainer $isHovered={isHovered}>
-              <Title title={manga.title}>
+              <Title title={manga.title} className="text-foreground">
                 {truncateTitle(manga.title, 35)}
               </Title>
             </TitleContainer>
@@ -152,8 +155,7 @@ function MangaCard({ manga }: { manga: MangaResult }) {
 
       <HoverCardContent
         side="right"
-        className="w-96 bg-background/70 border-gray-700/50 backdrop-blur-md text-foreground"
-      >
+        className="w-96 bg-background/70 border-gray-700/50 backdrop-blur-md text-foreground">
         <div className="flex gap-4">
           <img
             src={manga.image}
@@ -171,7 +173,7 @@ function MangaCard({ manga }: { manga: MangaResult }) {
           </div>
         </div>
         <Button className="w-full bg-purple-400 mt-2">
-          <Link href={`${manga.link.split('manga/')[2]}`}>Read Now</Link>
+          <Link href={`${manga.link.split("manga/")[2]}`}>Read Now</Link>
         </Button>
       </HoverCardContent>
     </HoverCard>

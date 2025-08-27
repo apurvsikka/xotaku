@@ -169,8 +169,9 @@ export default function MangaPage() {
             className="object-cover [data-ratio=portrait]:object-top opacity-80"
           />
         ) : null}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 shadow-[inset_0_0_200px_rgba(0,0,0,0.9)]" />
+        <div className="absolute inset-0 bg-background/90" />
+        <div className="absolute inset-0 bg-graident-to-b from-background  via-background/30 to-background" />
+        <div className="absolute inset-0 shadow-[inset_0_0_200px_rgba(0,0,0,1)]" />
         <div className="relative z-10 flex gap-6 px-6 md:px-10 py-8">
           {/* Poster */}
           {loading ? (
@@ -245,13 +246,13 @@ export default function MangaPage() {
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-10">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-10 bg-black/0 ">
         <Tabs
           value={activeTab}
           onValueChange={(v) => setActiveTab(v as any)}
           className="w-full">
           <center>
-            <TabsList className="grid grid-cols-2 sm:grid-cols-3 w-content  max-w-2x bg-neutral-700/50">
+            <TabsList className="grid grid-cols-3 w-content  max-w-2x bg-neutral-700/50">
               <TabsTrigger value="about" className="flex items-center gap-2">
                 <Info className="h-4 w-4" /> About
               </TabsTrigger>
@@ -268,7 +269,7 @@ export default function MangaPage() {
 
           {/* ABOUT */}
           <TabsContent value="about" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1  md:grid-cols-4 gap-6">
               <div className="col-span-1 space-y-3">
                 <h2 className="text-xl font-semibold flex items-center gap-2">
                   <Info className="h-5 w-5" /> Details
@@ -355,7 +356,7 @@ export default function MangaPage() {
                     <Link
                       href={`${id}/${ch.chapterNumber}`}
                       key={ch.chapterNumber}
-                      className="text-left rounded-xl p-3 border bg-background/60 hover:bg-background transition-all group focus:outline-none focus:ring-2 focus:ring-primary/40">
+                      className="text-left rounded-xl p-3 border border-gray-400/50 bg-sidebar/20 hover:bg-background transition-all group focus:outline-none focus:ring-2 focus:ring-primary/40">
                       <div className="flex items-center justify-between gap-3">
                         <div className="min-w-0">
                           <div className="text-sm font-semibold truncate flex items-center gap-2">

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import { ChevronLeft, ChevronRight, Play, Info } from "lucide-react";
+import Link from "next/link";
 
 interface Slide {
   id: string;
@@ -126,7 +127,8 @@ export const Slider: React.FC<SliderProps> = ({
   const [current, setCurrent] = useState(0);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  const prevSlide = () =>
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
     <SliderContainer className="h-[45vh] lg:rounded-md md:h-[60vh]">
@@ -138,18 +140,38 @@ export const Slider: React.FC<SliderProps> = ({
             <GradientLeft />
             <GradientBottom />
             {i === current && (
-              <div style={{ position: "absolute", bottom: "15%", left: "5%", color: "white" }}>
-                <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>{s.title}</h1>
-                <p style={{ maxWidth: "500px", marginTop: "0.5rem", opacity: 0.8 }}>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "15%",
+                  left: "5%",
+                  color: "white",
+                }}>
+                <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>
+                  {s.title}
+                </h1>
+                <p
+                  style={{
+                    maxWidth: "500px",
+                    marginTop: "0.5rem",
+                    opacity: 0.8,
+                  }}>
                   {s.description}
                 </p>
-                <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
-                  <ActionButton>
-                    <Play size={16} /> {primaryActionLabel}
-                  </ActionButton>
-                  <ActionButton variant="outline">
-                    <Info size={16} /> {secondaryActionLabel}
-                  </ActionButton>
+                <div
+                  style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+                  <Link
+                    href={`manga/${s.id}/${s.latestChapter?.split("Chapter ").join("")}`}>
+                    <ActionButton>
+                      <Play size={16} /> {primaryActionLabel}
+                    </ActionButton>
+                  </Link>
+
+                  <Link href={`manga/${s.id}`}>
+                    <ActionButton variant="outline">
+                      <Info size={16} /> {secondaryActionLabel}
+                    </ActionButton>
+                  </Link>
                 </div>
               </div>
             )}
@@ -165,8 +187,7 @@ export const Slider: React.FC<SliderProps> = ({
           right: "1rem",
           display: "flex",
           gap: "0.5rem",
-        }}
-      >
+        }}>
         <NavButton onClick={prevSlide}>
           <ChevronLeft size={20} />
         </NavButton>
@@ -184,8 +205,7 @@ export const Slider: React.FC<SliderProps> = ({
           transform: "translateX(-50%)",
           display: "flex",
           gap: "0.5rem",
-        }}
-      >
+        }}>
         {slides.map((_, i) => (
           <Dot key={i} active={i === current} onClick={() => setCurrent(i)} />
         ))}

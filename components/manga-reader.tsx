@@ -26,12 +26,11 @@ export default function MangaReader({ images }: { images: string[] }) {
   const handlePrev = () => handleJump(currentPage - 1)
 
   return (
-    <div className="bg-black text-white min-h-screen flex flex-col">
+    <div className=" text-white min-h-screen flex flex-col">
       {/* Reader container */}
       <div
         ref={containerRef}
-        className="flex-1 overflow-x-hidden flex snap-x snap-mandatory"
-      >
+        className="flex-1 overflow-x-hidden flex snap-x snap-mandatory">
         {images.map((src, idx) => (
           <img
             key={idx}
@@ -43,13 +42,12 @@ export default function MangaReader({ images }: { images: string[] }) {
       </div>
 
       {/* Toolbar (bottom) */}
-      <div className="sticky bottom-0 w-full bg-neutral-900/90 backdrop-blur-md p-2 flex items-center gap-2">
+      <div className="sticky bottom-0 w-full bg-sidebar/60 backdrop-blur-md p-2 flex items-center gap-2">
         <Button
           size="icon"
           variant="ghost"
           onClick={handlePrev}
-          disabled={currentPage === 0}
-        >
+          disabled={currentPage === 0}>
           <ChevronLeft />
         </Button>
 
@@ -78,11 +76,10 @@ export default function MangaReader({ images }: { images: string[] }) {
           size="icon"
           variant="ghost"
           onClick={handleNext}
-          disabled={currentPage === images.length - 1}
-        >
+          disabled={currentPage === images.length - 1}>
           <ChevronRight />
         </Button>
       </div>
     </div>
-  )
+  );
 }
