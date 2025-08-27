@@ -216,8 +216,8 @@ export default function MangaPage() {
             )}
             <div className="flex gap-3 mt-2">
               <Link href={`/manga/${id}/1`}>
-              <Button variant="outline" className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4" /> Add to List
+                <Button variant="outline" className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" /> Add to List
                 </Button>
               </Link>
             </div>
@@ -250,24 +250,21 @@ export default function MangaPage() {
           value={activeTab}
           onValueChange={(v) => setActiveTab(v as any)}
           className="w-full">
-          <TabsList className="grid grid-cols-2 sm:grid-cols-4 w-full max-w-2x bg-neutral-700/50">
-            <TabsTrigger value="about" className="flex items-center gap-2">
-              <Info className="h-4 w-4" /> About
-            </TabsTrigger>
-            <TabsTrigger value="chapters" className="flex items-center gap-2">
-              <BookOpen className="h-4 w-4" /> Chapters
-            </TabsTrigger>
-            <TabsTrigger
-              value="connections"
-              className="flex items-center gap-2">
-              <Network className="h-4 w-4" /> Connections
-            </TabsTrigger>
-            <TabsTrigger
-              value="suggestions"
-              className="flex items-center gap-2">
-              <Lightbulb className="h-4 w-4" /> Suggestions
-            </TabsTrigger>
-          </TabsList>
+          <center>
+            <TabsList className="grid grid-cols-2 sm:grid-cols-3 w-content  max-w-2x bg-neutral-700/50">
+              <TabsTrigger value="about" className="flex items-center gap-2">
+                <Info className="h-4 w-4" /> About
+              </TabsTrigger>
+              <TabsTrigger value="chapters" className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4" /> Chapters
+              </TabsTrigger>
+              <TabsTrigger
+                value="connections"
+                className="flex items-center gap-2">
+                <Network className="h-4 w-4" /> Connections
+              </TabsTrigger>
+            </TabsList>
+          </center>
 
           {/* ABOUT */}
           <TabsContent value="about" className="mt-6">
@@ -355,7 +352,8 @@ export default function MangaPage() {
                     </div>
                   ))
                 : visibleChapters.map((ch) => (
-                    <button
+                    <Link
+                      href={`${id}/${ch.chapterNumber}`}
                       key={ch.chapterNumber}
                       className="text-left rounded-xl p-3 border bg-background/60 hover:bg-background transition-all group focus:outline-none focus:ring-2 focus:ring-primary/40">
                       <div className="flex items-center justify-between gap-3">
@@ -379,7 +377,7 @@ export default function MangaPage() {
                         </div>
                         <Play className="h-4 w-4 flex-shrink-0 transition-transform group-hover:scale-110" />
                       </div>
-                    </button>
+                    </Link>
                   ))}
             </div>
 
@@ -444,45 +442,13 @@ export default function MangaPage() {
                 ))}
               </div>
             ) : (
-                <CardContainer>
-                  {ALData?.filter(
-                    (connection) => connection && connection.node
-                  ).map((connection, idx) => (
-                    <MangaConnectionCard key={idx} connection={connection} />
-                  ))}
-                </CardContainer>
-            )}
-          </TabsContent>
-
-          {/* SUGGESTIONS */}
-          <TabsContent value="suggestions" className="mt-6">
-            {loading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl p-3 border bg-background/60">
-                    <Skeleton className="h-5 w-28 mb-2" />
-                    <Skeleton className="h-4 w-[85%]" />
-                  </div>
+              <CardContainer>
+                {ALData?.filter(
+                  (connection) => connection && connection.node
+                ).map((connection, idx) => (
+                  <MangaConnectionCard key={idx} connection={connection} />
                 ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <div
-                    key={n}
-                    className="rounded-xl p-4 border bg-background/60 hover:bg-background transition">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Lightbulb className="h-4 w-4" />
-                      <span className="font-medium">You might like #{n}</span>
-                    </div>
-                    <p className="text-sm opacity-80">
-                      Recommendations based on genres, status, and popularity.
-                    </p>
-                  </div>
-                ))}
-              </div>
+              </CardContainer>
             )}
           </TabsContent>
         </Tabs>
